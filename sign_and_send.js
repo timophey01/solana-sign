@@ -12,4 +12,5 @@ const config = JSON.parse(readFileSync('./config.json'));
 
   let tx = Transaction.from(Buffer.from(process.argv[2], 'base64'));
   tx.sign(payer)
+  console.log(await connection.sendRawTransaction(tx.serialize()));
 })();
