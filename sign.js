@@ -9,11 +9,14 @@ const config = JSON.parse(readFileSync('./config.json'));
 (async () => {
 
   let connection = new web3.Connection(web3.clusterApiUrl(config.network), );
-  let payer = web3.Keypair.fromSecretKey(new Uint8Array(bs58.decode(config.privateKey)));
+
   let recentBlockhash = await connection.getRecentBlockhash();
   console.log(recentBlockhash)
   let tx = Transaction.from(Buffer.from(process.argv[2], 'base64'));
 
-  tx.sign(payer)
+  for (const pk of config.privateKeys) {
+    const signer = web3.Keypair.fromSecretKey(new Uint8Array(bs58.decode(pk)));
+    tx.sign(signer)
+  }
   console.log(tx.serialize().toString('base64'))
 })();
