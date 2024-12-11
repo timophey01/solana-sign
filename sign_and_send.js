@@ -1,5 +1,5 @@
 const web3 = require('@solana/web3.js');
-const bs58 = require('bs58');
+const bs58 = require('bs58').default;
 const { readFileSync } = require('fs');
 const { Transaction, StakeProgram, Authorized, Lockup, PublicKey, SendTransactionError } = web3
 
