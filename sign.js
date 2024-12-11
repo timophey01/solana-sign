@@ -1,7 +1,6 @@
 const web3 = require('@solana/web3.js');
 const bs58 = require('bs58').default;
 const { readFileSync } = require('fs');
-"bs58": "^6.0.0"
 const { Transaction } = web3
 const config = JSON.parse(readFileSync('./config.json'));
 
